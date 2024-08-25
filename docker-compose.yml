@@ -1,0 +1,12 @@
+version: '3.11'
+services:
+ app:
+  build: .
+  volumes:
+   - .:/Finalyear
+  ports:
+   - 8000:8000
+  image: application:django
+  container_name: app_container
+  command: gunicorn Ecommerce_web.wsgi:application --bind 0.0.0.0:8000
+  

@@ -1,0 +1,305 @@
+{% load static %}
+{% load mathfilters %}
+{% load humanize %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<!--<![endif]-->
+
+<!-- Head BEGIN -->
+<head>
+  <meta charset="utf-8">
+  <title>EQUART</title>
+
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <meta content="Metronic Shop UI description" name="description">
+  <meta content="Metronic Shop UI keywords" name="keywords">
+  <meta content="keenthemes" name="author">
+
+  <meta property="og:site_name" content="-CUSTOMER VALUE-">
+  <meta property="og:title" content="-CUSTOMER VALUE-">
+  <meta property="og:description" content="-CUSTOMER VALUE-">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="-CUSTOMER VALUE-"><!-- link to image for socio -->
+  <meta property="og:url" content="-CUSTOMER VALUE-">
+
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <!-- Fonts START -->
+  <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700|PT+Sans+Narrow|Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css">
+  <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900&amp;subset=all" rel="stylesheet" type="text/css"><!--- fonts for slider on the index page -->  
+  <!-- Fonts END -->
+
+  <!-- Global styles START -->          
+  <link href="{% static 'assets/plugins/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  
+  <!-- Global styles END --> 
+   
+  <!-- Page level plugin styles START -->
+  <link href="{% static 'assets/pages/css/animate.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/plugins/fancybox/source/jquery.fancybox.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/plugins/owl.carousel/assets/owl.carousel.css' %}" rel="stylesheet">
+  <!-- Page level plugin styles END -->
+
+  <!-- Theme styles START -->
+  <link href="{% static 'assets/pages/css/components.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/pages/css/slider.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/pages/css/style-shop.css' %}" rel="stylesheet" type="text/css">
+  <link href="{% static 'assets/corporate/css/style.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/corporate/css/style-responsive.css' %}" rel="stylesheet">
+  <link href="{% static 'assets/corporate/css/themes/red.css' %}" rel="stylesheet" id="style-color">
+  <link href="{% static 'assets/corporate/css/custom.css' %}" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    
+    <style>
+        body{
+            background-color: rgb(236, 236, 236);
+        }
+        .form-field{
+            width: 100%;
+            
+            padding: 20px;
+        }
+        .form-field input{
+            
+            height: 40px;
+            border: 1px solid #3d3d3da4;
+        }
+        .box-element{
+            
+            background-color: #f1f1f1;
+            border-radius: 4px;
+            padding: 50px;
+            display: flex;
+            justify-content: center;
+        }
+        .box-element2{
+            
+            background-color: #f1f1f1;
+            border-radius: 4px;
+            padding: 130px;
+            
+        }
+        .row-image{
+            width: 100px;
+        }
+        .cart-row{
+            display: flex;
+            align-items: flex-stretch;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ececec;
+        }
+
+        #form-wrapper form p input {
+        width: 100%; /* or any specific width */
+        }
+
+    </style>
+</head>
+
+<body class="ecommerce">
+
+
+
+    <!-- BEGIN TOP BAR -->
+    <div class="pre-header">
+      <div class="container">
+          <div class="row">
+              <!-- BEGIN TOP BAR LEFT PART -->
+              <div class="col-md-6 col-sm-6 additional-shop-info">
+                  <ul class="list-unstyled list-inline">
+                      <li><i class="fa fa-phone"></i><span>+1 456 6717</span></li>
+                      <!-- BEGIN CURRENCIES -->
+                      <li class="shop-currencies">
+                          <a href="javascript:void(0);">€</a>
+                          <a href="javascript:void(0);">£</a>
+                          <a href="javascript:void(0);" class="current">$</a>
+                      </li>
+                      <!-- END CURRENCIES -->
+                      
+                      <!-- BEGIN LANGS -->
+                      <li class="langs-block">
+                          <a href="javascript:void(0);" class="current">English </a>
+                          <div class="langs-block-others-wrapper"><div class="langs-block-others">
+                            <a href="javascript:void(0);">French</a>
+                            <a href="javascript:void(0);">Germany</a>
+                            <a href="javascript:void(0);">Turkish</a>
+                          </div></div>
+                      </li>
+                      <!-- END LANGS -->
+                      
+                  </ul>
+              </div>
+              <!-- END TOP BAR LEFT PART -->
+              <!-- BEGIN TOP BAR MENU -->
+              <div class="col-md-6 col-sm-6 additional-nav">
+                  <ul class="list-unstyled list-inline pull-right">
+                    <li>
+                      {% if user.is_authenticated %}
+                      <h5 class="my-auto"><span class="nav-link text-white ">Welcome,{{ user.username }}</span></h5>
+                      {% endif %}
+                    </li>
+                      <li><a href="{% url 'account' %}">My Account</a></li>
+                      <li><a href="shop-wishlist.html">My Wishlist</a></li>
+                      <li><a href="shop-checkout.html">Checkout</a></li>
+                      {% if user.is_authenticated %}
+                      <li><a href="{% url 'logout' %}">Log Out</a></li>
+                      {% else %}
+                      <li><a href="{% url 'login' %}">Login</a></li>
+                      
+                      {% endif %}
+                  </ul>
+              </div>
+              <!-- END TOP BAR MENU -->
+          </div>
+      </div>        
+  </div>
+  <!-- END TOP BAR -->
+
+  <!-- BEGIN HEADER -->
+  <div class="header">
+    <div class="container">
+      <a class="site-logo" href="{% url 'cluster_and_recommend' %}"><img src="{% static 'images/eqart.png' %}" alt="Metronic Shop UI"></a>
+
+      <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
+
+      <!-- BEGIN CART -->
+      <div class="top-cart-block">
+        <div class="top-cart-info">
+        <a href="javascript:void(0);" class="top-cart-info-count">{{ total_no_of_item }} items</a>
+        <a href="javascript:void(0);" class="top-cart-info-value">₹{{ total_price }}</a>
+        </div>
+        <i class="fa fa-shopping-cart"></i>
+                      
+        <div class="top-cart-content-wrapper">
+          <div class="top-cart-content">
+            <ul class="scroller" style="height: 250px;">
+              
+            </ul>
+            <div class="text-right">
+              <a href="{% url 'view_cart' %}" class="btn btn-default">View Cart</a>
+              <a href="{% url 'check_out' %}" class="btn btn-primary">Checkout</a>
+            </div>
+          </div>
+        </div>            
+      </div>
+      <!--END CART --> <br><br><br><br><br><br><br>
+
+
+
+
+
+
+
+
+
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="box-element text-dark" id="form-wrapper">
+                <form class="form-field" method="post">
+                    {% csrf_token %}
+                    {{ shipping_form.as_p }} <br>
+                    <button style="background-color: #e84d1c; border-radius: 10px; color: #fff;" class="btn mx-auto d-block text-white" type="submit">Save Address</button>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="col-lg-6">
+            <div class="box-element2 text-dark">
+                <a class="btn btn-outline-secondary text-dark" href="{% url 'view_cart' %}">&#x2190; Back to Cart</a>
+                <hr>
+                <h3>Order Summary</h3>
+                <hr>
+                {% for item in all_order %}
+                    <div class="cart-row">
+                        <div style="flex:2"><img class="row-image" src="{{ item.product.image.url }}"></div>
+                        <div style="flex:2"><p>{{ item.product.name }}</p></div>
+                        <div style="flex:1"><p>₹{{ item.product.price|floatformat }}</p></div>
+                        <div style="flex:1"><p>{{ item.quantity }}</p></div>
+                    </div>
+                {% endfor %}
+                    
+                <h5>Items: {{ total_no_of_item }}</h5>
+                <h5>Total: ₹{{ total_price }}</h5>
+
+                <div class="btn_container">
+                    <!-- Payment Button -->
+                <form action="{% url 'payment' %}" method='POST'>    
+                    {% csrf_token %}
+                    <input type="hidden" name="total_price" value="{{ total_price }}"><br>
+                    <button type="submit" name="razorpay" class="btn btn-primary">Razorpay</button>
+                    <button type="submit" name="cod" class="btn btn-primary">Cash On Delivery</button>
+
+                </form>
+                </div>
+
+              
+
+
+            </div>
+        </div>
+    </div>
+</div> <br><br><br>
+
+
+
+
+
+
+<!-- jQery -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+<!-- Razorpay Payment Script -->
+
+<form method="POST" action="{% url 'razorpay_callback' %}">
+  {% csrf_token %}
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+ // Include the amount attribute here
+  var options = {
+    key: "{{ razorpay_key }}",
+    amount: "{{ amount }}",
+    currency: "INR",
+    name: "{{ order.name }}",
+    description: "Test Transaction",
+    image: "https://example.com/your_logo",
+    order_id: "{{ order.razorpay_order }}",
+    callback_url: "{% url 'razorpay_callback' %}",
+    // Pass the amount attribute to Razorpay options
+    
+  };
+
+  var rzp1 = new Razorpay(options);
+  rzp1.open();
+
+  rzp1.on('payment.success', function(response) {
+    $.ajax({
+      url: '/razorpay-callback/',
+      data: {
+          'payment_id': response.razorpay_payment_id,
+          'signature_id': response.razorpay_signature
+      },
+      method: 'POST',
+      success: function(response) {
+          // Handle the server response
+      },
+      error: function(error) {
+          // Handle the error
+      }
+    });
+  });
+  </script>
+  <input type="hidden" custom="Hidden Element" name="hidden">
+</form>
+
+</body>
+</html>

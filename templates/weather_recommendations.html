@@ -1,0 +1,53 @@
+
+   
+
+    {% if need_geolocation %}
+    <p>Please allow access to your location to get weather recommendations:</p>
+    <p>Attempting to determine your location...</p> <!-- New message -->
+    <button onclick="getLocation()">Allow Access</button>
+    
+<form action=""method="post">
+    {% csrf_token %}
+    <label>Choose Your City:</label>
+    <input type="text" name="city"placeholder="City" id="">
+    <button type="submit" class="btn btn-primary">Search</button>  
+
+
+</form>
+
+    <script>
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    }
+
+    function showPosition(position) {
+        // Populate hidden form fields with latitude and longitude
+        document.getElementById("latitude").value = position.coords.latitude;
+        document.getElementById("longitude").value = position.coords.longitude;
+
+        // Submit the form
+        document.getElementById("weatherForm").submit();
+    }
+    </script>
+    {% else %}
+    <!-- Render weather data -->
+<div class="col-12">
+    <div class="col-12">
+    <p>City: {{ city }}</p>
+    <p>Temperature: {{ temp }}</p>
+</div>
+</div>
+    
+    {% endif %}
+
+    <!-- Hidden form fields to hold latitude and longitude -->
+    <form id="weatherForm" method="post" action="">
+        {% csrf_token %}
+        <input type="hidden" id="latitude" name="latitude" value="">
+        <input type="hidden" id="longitude" name="longitude" value="">
+    </form>
+

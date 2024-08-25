@@ -1,0 +1,156 @@
+ {% load static %}
+ <!-- BEGIN TOP BAR -->
+ <div class="pre-header">
+    <div class="container">
+        <div class="row">
+            <!-- BEGIN TOP BAR LEFT PART -->
+            <div class="col-md-6 col-sm-6 additional-shop-info">
+                <ul class="list-unstyled list-inline">
+                    <li><i class="fa fa-phone"></i><span>+1 456 6717</span></li>
+                    <!-- BEGIN CURRENCIES -->
+                    <li class="shop-currencies">
+                        <a href="javascript:void(0);">€</a>
+                        <a href="javascript:void(0);">£</a>
+                        <a href="javascript:void(0);" class="current">$</a>
+                    </li>
+                    <!-- END CURRENCIES -->
+                    
+                    <!-- BEGIN LANGS -->
+                    <li class="langs-block">
+                        <a href="javascript:void(0);" class="current">English </a>
+                        <div class="langs-block-others-wrapper"><div class="langs-block-others">
+                          <a href="javascript:void(0);">French</a>
+                          <a href="javascript:void(0);">Germany</a>
+                          <a href="javascript:void(0);">Turkish</a>
+                        </div></div>
+                    </li>
+                    <!-- END LANGS -->
+                    
+                </ul>
+            </div>
+            <!-- END TOP BAR LEFT PART -->
+            <!-- BEGIN TOP BAR MENU -->
+            <div class="col-md-6 col-sm-6 additional-nav">
+                <ul class="list-unstyled list-inline pull-right">
+                  <li>
+                    {% if user.is_authenticated %}
+                    <h5 class="my-auto"><span class="nav-link text-white ">Welcome,{{ user.username }}</span></h5>
+                    {% endif %}
+                  </li>
+                    
+                    <li><a href="shop-checkout.html">Checkout</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Log Out</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    
+                    {% endif %}
+                </ul>
+            </div>
+            <!-- END TOP BAR MENU -->
+        </div>
+    </div>        
+</div>
+<!-- END TOP BAR -->
+
+<!-- BEGIN HEADER -->
+<div class="header">
+  <div class="container">
+    <a class="site-logo" href="{% url 'homeapp' %}"><img src="{% static 'images/eqart.png' %}" alt="Metronic Shop UI"></a>
+
+    <a href="javascript:void(0);" class="mobi-toggler"><i class="fa fa-bars"></i></a>
+
+    <!-- BEGIN CART -->
+    <div class="top-cart-block">
+      <div class="top-cart-info">
+        <a href="javascript:void(0);" class="top-cart-info-count">{{ total_no_of_item }} items</a>
+        <a href="javascript:void(0);" class="top-cart-info-value">₹{{ total_price }}</a>
+      </div>
+      <i class="fa fa-shopping-cart"></i>
+    {% for item in cart_items %}              
+      <div class="top-cart-content-wrapper">
+        <div class="top-cart-content">
+          <ul class="scroller" style="height: 250px;">
+            <li>
+              <a href="shop-item.html"><img src="{{ item.product.image.url }}" alt="Rolex Classic Watch" width="37" height="34"></a>
+              <span class="cart-content-count">x {{ item.quatity }}</span>
+              <strong><a href="shop-item.html">{{ item.product.name }}</a></strong>
+              <em>₹{{ item.product.price|floatformat:2 }}</em>
+              <a href="javascript:void(0);" class="del-goods">&nbsp;</a>
+            </li>
+    {% endfor %}        
+          </ul>
+          <div class="text-right">
+            <a href="shop-shopping-cart.html" class="btn btn-default">View Cart</a>
+            <a href="shop-checkout.html" class="btn btn-primary">Checkout</a>
+          </div>
+        </div>
+      </div>            
+    </div>
+    <!--END CART -->
+
+    <!-- BEGIN NAVIGATION -->
+    <div class="header-navigation">
+      <ul>
+        <li class="dropdown">
+          <a href="{% url 'category:category_products' 'Mobiles' %}">
+            Mobiles
+            
+          </a>
+            
+         
+        </li>
+        <li class="dropdown dropdown-megamenu">
+          <a href="{% url 'category:category_products' 'Laptop and Desktop' %}">
+            Laptops and Desktop
+            
+          </a>
+          
+        </li>
+
+       
+        
+        <li class="dropdown dropdown100 nav-catalogue">
+          <a href="{% url 'category:category_products' 'Storage' %}">
+            Storage
+            
+          </a>
+          
+        </li>
+        <li class="dropdown">
+          <a href="{% url 'category:category_products' 'Camera and Accessories' %}">
+            Camera and accessories
+            
+          </a>
+        </li>
+        
+        
+        <li class="dropdown">
+          <a href="{% url 'category:category_products' 'Gaming' %}">
+            Gaming
+            
+          </a>
+        </li>
+
+        <!-- BEGIN TOP SEARCH -->
+        <li class="menu-search">
+          <span class="sep"></span>
+          <i class="fa fa-search search-btn"></i>
+          <div class="search-box">
+            <form action="#">
+              <div class="input-group">
+                <input type="text" placeholder="Search" class="form-control">
+                <span class="input-group-btn">
+                  <button class="btn btn-primary" type="submit">Search</button>
+                </span>
+              </div>
+            </form>
+          </div> 
+        </li>
+        <!-- END TOP SEARCH -->
+      </ul>
+    </div>
+    <!-- END NAVIGATION -->
+  </div>
+</div>
+<!-- Header END -->
